@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ЕА · Б.Р — Право в здравоохранении · Цифровые решения</title>
+<meta name="description" content="Специалист в области права здравоохранения, бизнес-тренер медицинских команд, разработчик цифровых продуктов. Опыт в РФ и Казахстане."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,600&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:   #1C2A42;
+  --navy2:  #243451;
+  --navy3:  #2E4068;
+  --glow:   #5BA3D4;
+  --glow2:  rgba(91,163,212,0.15);
+  --gold:   #C4A55A;
+  --white:  #F2F4F8;
+  --muted:  #8496B0;
+  --muted2: #A8B8CC;
+  --line:   rgba(255,255,255,0.07);
+  --fs:     1;
+  --line2:  rgba(91,163,212,0.25);
+  --r:      16px;
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--navy);
+  color:var(--white);
+  font-family:'Manrope',system-ui,sans-serif;
+  font-weight:400;
+  font-size:17px;
+  line-height:1.7;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+/* A11Y */
+.a11y{
+  position:fixed;top:0;left:0;right:0;z-index:300;
+  background:rgba(14,22,36,.97);
+  padding:5px 32px;
+  display:flex;justify-content:flex-end;align-items:center;gap:10px;
+  border-bottom:1px solid var(--line);
+}
+.a11y-btn{
+  font-family:'Manrope',sans-serif;font-size:12px;font-weight:500;
+  padding:4px 14px;border:1px solid var(--line2);
+  color:var(--muted2);background:none;cursor:pointer;
+  border-radius:20px;transition:all .25s;
+}
+.a11y-btn:hover,.a11y-btn.on{color:var(--glow);border-color:var(--glow)}
+body.big-text{zoom:1.18}
+/* HEADER */
+header{
+  position:fixed;top:32px;left:0;right:0;z-index:200;
+  padding:0 32px;
+}
+.hx{
+  max-width:1280px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(28,42,66,.85);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border:1px solid var(--line);
+  border-radius:var(--r);
+  padding:14px 28px;
+}
+.h-logo{
+  font-family:'Playfair Display',Georgia,serif;
+  font-style:italic;font-size:20px;font-weight:400;
+  letter-spacing:.05em;color:var(--white);
+  display:flex;align-items:center;gap:10px;
+}
+.logo-img{height:56px;width:auto;filter:invert(1) brightness(6);mix-blend-mode:screen}
+.h-nav{display:flex;align-items:center;gap:28px}
+.h-nav a{
+  font-size:13px;font-weight:500;
+  color:var(--muted2);transition:color .25s;
+  letter-spacing:.02em;
+}
+.h-nav a:hover{color:var(--white)}
+.h-cta{
+  font-size:13px;font-weight:600;
+  padding:9px 22px;border-radius:30px;
+  background:var(--glow);color:var(--navy);
+  transition:opacity .25s,box-shadow .25s;
+}
+.h-cta:hover{opacity:.9;box-shadow:0 0 20px rgba(91,163,212,.35)}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.burger span{display:block;width:22px;height:2px;background:var(--white);border-radius:2px}
+/* MOBILE */
+.m-menu{
+  display:none;position:fixed;inset:0;
+  background:rgba(18,28,46,.98);backdrop-filter:blur(20px);
+  z-index:250;flex-direction:column;align-items:center;justify-content:center;gap:36px;
+}
+.m-menu.on{display:flex}
+.m-menu a{
+  font-family:'Playfair Display',serif;font-style:italic;
+  font-size:32px;color:var(--white);
+}
+.m-close{position:absolute;top:28px;right:28px;font-size:22px;color:var(--muted);cursor:pointer;background:none;border:none}
+/* HERO */
+#hero{
+  min-height:100vh;
+  display:flex;align-items:center;
+  padding:140px 32px 80px;
+  position:relative;overflow:hidden;
+}
+canvas#stars{position:absolute;inset:0;z-index:0;pointer-events:none}
+/* aurora glow */
+.aurora{
+  position:absolute;pointer-events:none;border-radius:50%;filter:blur(80px);
+}
+.aurora-1{
+  width:600px;height:400px;
+  background:radial-gradient(ellipse,rgba(91,163,212,.12) 0%,transparent 70%);
+  top:-100px;right:5%;
+}
+.aurora-2{
+  width:400px;height:400px;
+  background:radial-gradient(ellipse,rgba(100,80,180,.08) 0%,transparent 70%);
+  bottom:0;left:10%;
+}
+.hero-inner{
+  max-width:1280px;margin:0 auto;width:100%;
+  display:grid;grid-template-columns:1fr 420px;
+  gap:60px;align-items:center;
+  position:relative;z-index:1;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--glow);margin-bottom:20px;
+  background:rgba(91,163,212,.1);border:1px solid var(--line2);
+  border-radius:30px;padding:6px 16px;
+}
+.hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--glow);animation:pulse 2s ease infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
+.hero-h1{
+  font-family:'Manrope',system-ui,sans-serif;
+  font-weight:700;font-style:normal;
+  font-size:clamp(36px,4.5vw,64px);
+  line-height:1.15;color:var(--white);
+  margin-bottom:20px;
+  letter-spacing:-.02em;
+  display:flex;flex-direction:column;gap:2px;
+}
+.h1-dim{
+  color:rgba(255,255,255,.38);
+  display:block;
+}
+.hero-h1 .hl{
+  display:block;
+  background:linear-gradient(90deg,var(--glow),#8BC4E8);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-sub{
+  font-size:17px;font-weight:400;
+  color:rgba(168,184,204,.75);line-height:1.75;
+  max-width:540px;margin-bottom:32px;
+}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px}
+.chip{
+  font-size:12px;font-weight:500;
+  padding:7px 16px;border-radius:30px;
+  border:1px solid var(--line);
+  color:var(--muted2);transition:all .25s;
+}
+.chip.med{
+  border-color:rgba(196,165,90,.3);
+  color:var(--gold);
+  background:rgba(196,165,90,.06);
+}
+.chip:hover{border-color:var(--glow);color:var(--glow)}
+.hero-btns{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.btn-primary{
+  font-size:15px;font-weight:600;
+  padding:14px 32px;border-radius:30px;
+  background:var(--glow);color:var(--navy);
+  transition:opacity .25s,box-shadow .25s;
+}
+.btn-primary:hover{opacity:.9;box-shadow:0 0 28px rgba(91,163,212,.4)}
+.btn-outline{
+  font-size:15px;font-weight:500;
+  padding:13px 28px;border-radius:30px;
+  border:1px solid rgba(255,255,255,.15);
+  color:var(--white);
+  transition:border-color .25s,color .25s;
+}
+.btn-outline:hover{border-color:var(--glow);color:var(--glow)}
+.hero-note{font-size:13px;color:var(--muted);margin-top:16px}
+/* HERO RIGHT — 3D Tech Card */
+.hero-card{
+  position:relative;
+  width:100%;aspect-ratio:1;max-width:380px;margin:0 auto;
+}
+.card-orbit{
+  position:absolute;inset:0;
+  border:1px solid rgba(91,163,212,.12);
+  border-radius:50%;
+  animation:orbit 20s linear infinite;
+}
+.card-orbit-2{
+  inset:15%;
+  border-color:rgba(91,163,212,.18);
+  animation-duration:14s;animation-direction:reverse;
+}
+.card-orbit-3{inset:30%;border-color:rgba(91,163,212,.25);animation-duration:9s}
+.card-dot{
+  position:absolute;width:6px;height:6px;border-radius:50%;
+  background:var(--glow);top:-3px;left:50%;transform:translateX(-50%);
+  box-shadow:0 0 10px var(--glow);
+}
+@keyframes orbit{to{transform:rotate(360deg)}}
+.card-core{
+  position:absolute;inset:22%;
+  background:linear-gradient(135deg,rgba(28,42,66,.95),rgba(46,64,104,.9));
+  border:1px solid rgba(91,163,212,.3);
+  border-radius:24px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
+  box-shadow:0 0 40px rgba(91,163,212,.15),0 0 80px rgba(91,163,212,.06),inset 0 1px 0 rgba(255,255,255,.08);
+  animation:float 5s ease-in-out infinite;
+}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.card-icon{font-size:36px;filter:drop-shadow(0 0 16px rgba(91,163,212,.7))}
+.card-label{font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--glow)}
+.card-stats{display:flex;flex-direction:column;gap:6px;width:80%}
+.card-stat{
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:11px;
+}
+.card-stat-label{color:var(--muted);font-weight:400}
+.card-stat-val{color:var(--white);font-weight:600;font-size:13px}
+/* NUMS */
+#nums{
+  background:var(--navy2);
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+}
+.nums-grid{
+  max-width:1280px;margin:0 auto;padding:0 32px;
+  display:grid;grid-template-columns:repeat(4,1fr);
+}
+.num-item{
+  padding:40px 32px;border-right:1px solid var(--line);
+  position:relative;
+}
+.num-item:last-child{border-right:none}
+.num-top{
+  width:2px;height:0;background:var(--glow);
+  position:absolute;top:0;left:0;
+  transition:height .6s ease;
+}
+.num-item:hover .num-top{height:100%}
+.num-val{
+  font-family:'Manrope',system-ui,sans-serif;font-style:normal;
+  font-size:clamp(36px,4vw,56px);font-weight:700;
+  color:var(--white);line-height:1;margin-bottom:8px;
+  letter-spacing:-.02em;
+}
+.num-suf{font-size:.6em;color:var(--glow)}
+.num-label{font-size:14px;font-weight:400;color:var(--muted2);line-height:1.45}
+/* SECTIONS */
+section{padding:90px 32px;position:relative}
+.cx{max-width:1280px;margin:0 auto}
+.sec-label{
+  font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--glow);margin-bottom:14px;
+  display:flex;align-items:center;gap:10px;
+}
+.sec-label::before{content:'';width:18px;height:1px;background:var(--glow)}
+.sec-h{
+  font-family:'Manrope',system-ui,sans-serif;font-style:normal;font-weight:700;
+  font-size:clamp(26px,3.5vw,44px);
+  color:var(--white);line-height:1.15;margin-bottom:48px;
+  letter-spacing:-.02em;
+}
+.sec-h strong{font-weight:800}
+/* EXPERTISE */
+#expertise{background:var(--navy2)}
+.exp-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:16px;
+}
+.exp-card{
+  background:rgba(255,255,255,.04);
+  border:1px solid var(--line);
+  border-radius:var(--r);
+  padding:36px;
+  transition:border-color .3s,background .3s;
+  position:relative;overflow:hidden;
+}
+.exp-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--glow),transparent);
+  opacity:0;transition:opacity .3s;
+}
+.exp-card:hover{border-color:var(--line2);background:rgba(91,163,212,.04)}
+.exp-card:hover::before{opacity:1}
+.exp-num{
+  font-family:'Manrope',system-ui,sans-serif;font-style:normal;
+  font-size:32px;color:rgba(91,163,212,.2);
+  font-weight:700;margin-bottom:12px;line-height:1;
+  letter-spacing:-.02em;
+}
+.exp-card h3{
+  font-size:18px;font-weight:600;
+  color:var(--white);margin-bottom:12px;
+}
+.exp-card p{font-size:15px;color:var(--muted2);line-height:1.75;font-weight:300}
+.exp-result{
+  margin-top:18px;padding-top:16px;border-top:1px solid var(--line);
+  font-size:13px;font-weight:600;color:var(--gold);letter-spacing:.03em;
+}
+.exp-wide{
+  grid-column:span 2;
+  background:linear-gradient(135deg,rgba(91,163,212,.08),rgba(100,80,180,.05));
+  border-color:rgba(91,163,212,.2);
+  display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;
+}
+.exp-wide:hover{border-color:rgba(91,163,212,.35)}
+.exp-quote{
+  font-family:'Playfair Display',serif;font-style:italic;font-weight:400;
+  font-size:20px;color:var(--muted2);line-height:1.6;
+  border-left:2px solid var(--glow);padding-left:24px;
+}
+/* ABOUT */
+#about{background:var(--navy)}
+.about-grid{
+  display:grid;grid-template-columns:340px 1fr;
+  gap:60px;align-items:start;
+}
+.about-photo{
+  border-radius:var(--r);overflow:hidden;
+  aspect-ratio:3/4;
+  background:var(--navy2);
+  border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;
+  position:sticky;top:110px;
+}
+.about-ph{text-align:center;color:var(--muted)}
+.about-ph span{display:block;font-size:48px;margin-bottom:8px}
+.about-ph p{font-size:13px;letter-spacing:.05em}
+.about-img{width:100%;height:100%;object-fit:cover;object-position:top}
+.about-body{}
+.about-h{
+  font-family:'Manrope',system-ui,sans-serif;font-style:normal;font-weight:700;
+  font-size:clamp(24px,3vw,40px);
+  color:var(--white);line-height:1.15;margin-bottom:8px;
+  letter-spacing:-.02em;
+}
+.about-ps{display:flex;flex-direction:column;gap:0;margin-top:28px}
+.about-p{
+  font-size:16px;color:var(--muted2);line-height:1.8;font-weight:300;
+  padding:20px 0;border-top:1px solid var(--line);
+}
+.about-p:last-child{border-bottom:1px solid var(--line)}
+.about-p strong{color:var(--white);font-weight:500}
+/* SERVICES */
+#services{background:var(--navy2)}
+.srv-tabs{display:flex;gap:4px;margin-bottom:0;padding-bottom:0;flex-wrap:wrap}
+.srv-tab{
+  font-size:14px;font-weight:500;
+  padding:10px 24px;border-radius:30px 30px 0 0;
+  border:1px solid var(--line);border-bottom:none;
+  color:var(--muted);background:transparent;cursor:pointer;
+  transition:all .3s;
+}
+.srv-tab:first-child.on{
+  color:var(--navy);background:var(--gold);
+  border-color:var(--gold);
+}
+.srv-tab:last-child.on{
+  color:var(--navy);background:var(--glow);
+  border-color:var(--glow);
+}
+.srv-tab:first-child:hover:not(.on){border-color:rgba(196,165,90,.5);color:var(--gold)}
+.srv-tab:last-child:hover:not(.on){border-color:rgba(91,163,212,.4);color:var(--glow)}
+.srv-body{
+  background:var(--navy3);
+  border:1px solid var(--line2);
+  border-radius:0 var(--r) var(--r) var(--r);
+  padding:32px;
+}
+.srv-pane{display:none;grid-template-columns:repeat(2,1fr);gap:16px}
+.srv-pane.on{display:grid}
+.srv-card{
+  background:rgba(255,255,255,.04);
+  border:1px solid var(--line);
+  border-radius:12px;padding:28px;
+  transition:border-color .25s;
+}
+.srv-card:hover{border-color:var(--line2)}
+.srv-tag{
+  font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:12px;
+}
+.srv-pane.dig .srv-tag{color:var(--glow)}
+.srv-card h3{font-size:17px;font-weight:600;color:var(--white);margin-bottom:14px}
+.srv-list{display:flex;flex-direction:column;gap:8px}
+.srv-list li{
+  font-size:14px;color:var(--muted2);font-weight:300;
+  padding-left:14px;position:relative;line-height:1.55;
+}
+.srv-list li::before{content:'·';position:absolute;left:0;color:var(--muted)}
+.srv-res{
+  margin-top:16px;padding-top:14px;border-top:1px solid var(--line);
+  font-size:13px;color:var(--muted2);
+}
+.srv-res strong{color:var(--white);font-weight:500}
+/* CASES */
+#cases{background:var(--navy)}
+.cases-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
+}
+.case-c{
+  background:var(--navy2);border:1px solid var(--line);
+  border-radius:var(--r);padding:32px;
+  transition:border-color .25s,transform .25s;
+  position:relative;overflow:hidden;
+}
+.case-c:hover{border-color:var(--line2);transform:translateY(-3px)}
+.case-type{
+  font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+  margin-bottom:16px;
+}
+.case-type.m{color:var(--gold)}
+.case-type.d{color:var(--glow)}
+.case-deep{
+  font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(196,165,90,.7);
+  background:rgba(196,165,90,.08);border:1px solid rgba(196,165,90,.2);
+  border-radius:20px;padding:3px 10px;
+  display:inline-block;margin-bottom:12px;
+}
+.case-num{
+  font-family:'Manrope',system-ui,sans-serif;font-style:normal;
+  font-size:clamp(36px,4vw,56px);font-weight:700;
+  line-height:1;margin-bottom:10px;letter-spacing:-.02em;
+}
+.case-num.m{color:var(--gold)}
+.case-num.d{color:var(--glow)}
+.case-c p{font-size:14px;color:var(--muted2);line-height:1.7;font-weight:300}
+.case-bar{
+  margin-top:18px;padding-top:14px;border-top:1px solid var(--line);
+  font-size:12px;color:var(--muted);font-weight:400;
+}
+/* PROCESS */
+#process{background:var(--navy2)}
+.proc-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
+}
+.proc-step{
+  background:rgba(255,255,255,.03);
+  border:1px solid var(--line);border-radius:var(--r);padding:28px;
+}
+.proc-n{
+  width:40px;height:40px;border-radius:50%;
+  background:rgba(91,163,212,.1);border:1px solid var(--line2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:600;color:var(--glow);
+  margin-bottom:18px;
+}
+.proc-step h3{font-size:17px;font-weight:600;color:var(--white);margin-bottom:8px}
+.proc-step p{font-size:14px;color:var(--muted2);line-height:1.65;font-weight:300}
+/* CONTACT */
+#contact{background:var(--navy)}
+.con-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.con-h{
+  font-family:'Manrope',system-ui,sans-serif;font-style:normal;font-weight:700;
+  font-size:clamp(24px,3vw,40px);
+  color:var(--white);line-height:1.15;margin-bottom:16px;
+  letter-spacing:-.02em;
+}
+.con-p{font-size:16px;color:var(--muted2);line-height:1.8;font-weight:300;margin-bottom:32px}
+.con-links{display:flex;flex-direction:column;gap:0}
+.con-links a{
+  font-size:15px;color:var(--muted2);
+  padding:14px 0;border-bottom:1px solid var(--line);
+  transition:color .25s;display:flex;align-items:center;gap:8px;
+}
+.con-links a:first-child{border-top:1px solid var(--line)}
+.con-links a:hover{color:var(--glow)}
+.form-wrap{
+  background:var(--navy2);border:1px solid var(--line);
+  border-radius:var(--r);padding:32px;
+}
+.fg{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.fg label{
+  font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);
+}
+.fg input,.fg select{
+  background:rgba(255,255,255,.05);border:1px solid var(--line);
+  border-radius:10px;padding:12px 16px;
+  font-family:'Manrope',sans-serif;font-size:15px;font-weight:400;
+  color:var(--white);outline:none;
+  transition:border-color .25s;width:100%;
+}
+.fg input:focus,.fg select:focus{border-color:var(--glow)}
+.fg input::placeholder{color:var(--muted)}
+.fg select option{background:var(--navy2)}
+.f-btn{
+  width:100%;margin-top:8px;
+  font-family:'Manrope',sans-serif;font-size:15px;font-weight:600;
+  padding:15px;border-radius:30px;
+  background:var(--glow);color:var(--navy);
+  border:none;cursor:pointer;transition:opacity .25s,box-shadow .25s;
+}
+.f-btn:hover{opacity:.9;box-shadow:0 0 24px rgba(91,163,212,.4)}
+.f-note{font-size:12px;color:var(--muted);margin-top:12px;text-align:center}
+.f-note a{color:var(--muted);border-bottom:1px solid var(--line)}
+.f-ok{
+  display:none;text-align:center;padding:40px 20px;
+  flex-direction:column;align-items:center;gap:16px;
+}
+.f-ok.show{display:flex;animation:fOkIn .5s cubic-bezier(.22,1,.36,1)}
+@keyframes fOkIn{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:none}}
+.f-ok-check{
+  width:64px;height:64px;border-radius:50%;
+  background:rgba(91,163,212,.12);border:2px solid var(--glow);
+  display:flex;align-items:center;justify-content:center;
+  animation:checkPop .5s .1s cubic-bezier(.22,1,.36,1) both;
+}
+@keyframes checkPop{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+.f-ok-check svg{width:28px;height:28px;stroke:var(--glow);stroke-dasharray:40;stroke-dashoffset:40;animation:checkDraw .5s .4s ease forwards}
+@keyframes checkDraw{to{stroke-dashoffset:0}}
+.f-ok-title{font-family:'Manrope',sans-serif;font-size:20px;font-weight:600;color:var(--white)}
+.f-ok-sub{font-size:14px;color:var(--muted2);line-height:1.6}
+/* BACK TO TOP */
+.btt{
+  position:fixed;bottom:90px;right:28px;z-index:490;
+  width:44px;height:44px;border-radius:50%;
+  background:rgba(28,42,66,.9);border:1px solid rgba(91,163,212,.3);
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  opacity:0;pointer-events:none;
+  transition:opacity .35s,transform .35s,box-shadow .3s;
+  box-shadow:0 4px 20px rgba(0,0,0,.3);
+}
+.btt.show{opacity:1;pointer-events:auto}
+.btt:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(91,163,212,.3);border-color:var(--glow)}
+.btt svg{width:18px;height:18px;stroke:var(--glow);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+/* FOOTER */
+footer{
+  background:rgba(12,20,34,.95);
+  border-top:1px solid var(--line);
+  padding:36px 32px;
+}
+.fx{
+  max-width:1280px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:20px;
+}
+.f-logo{
+  font-family:'Playfair Display',serif;font-style:italic;
+  font-size:18px;color:rgba(242,244,248,.5);
+}
+.f-nav{display:flex;gap:24px;flex-wrap:wrap}
+.f-nav a{font-size:13px;color:var(--muted);transition:color .25s}
+.f-nav a:hover{color:var(--white)}
+.f-copy{font-size:12px;color:rgba(148,150,176,.4)}
+/* LAWS section */
+#laws{background:var(--navy)}
+.laws-intro{font-size:15px;color:var(--muted2);line-height:1.75;max-width:700px;margin-bottom:40px;font-weight:300}
+.laws-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.law-item{
+  border:1px solid var(--line);border-radius:12px;
+  overflow:hidden;
+  transition:border-color .3s;
+}
+.law-item:hover{border-color:rgba(91,163,212,.25)}
+.law-q{
+  width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:20px 24px;background:none;border:none;cursor:pointer;text-align:left;
+  color:var(--white);
+}
+.law-q-left{display:flex;align-items:flex-start;gap:14px}
+.law-tag{
+  font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--gold);background:rgba(196,165,90,.1);border:1px solid rgba(196,165,90,.2);
+  border-radius:20px;padding:3px 10px;white-space:nowrap;flex-shrink:0;margin-top:2px;
+}
+.law-title{font-size:15px;font-weight:600;color:var(--white);line-height:1.3}
+.law-arrow{
+  width:24px;height:24px;flex-shrink:0;
+  border:1px solid var(--line2);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  transition:transform .3s,background .3s;
+}
+.law-arrow svg{width:12px;height:12px;stroke:var(--glow);fill:none;stroke-width:2;stroke-linecap:round;transition:transform .3s}
+.law-item.open .law-arrow{background:rgba(91,163,212,.1)}
+.law-item.open .law-arrow svg{transform:rotate(180deg)}
+.law-body{
+  max-height:0;overflow:hidden;
+  transition:max-height .4s cubic-bezier(.22,1,.36,1),padding .3s;
+  padding:0 24px;
+}
+.law-item.open .law-body{max-height:400px;padding:0 24px 20px}
+.law-body p{font-size:14px;color:var(--muted2);line-height:1.7;font-weight:300;padding-top:4px;border-top:1px solid var(--line)}
+.law-body p:first-child{padding-top:0;border-top:none}
+.law-body strong{color:var(--white);font-weight:500}
+.law-body a{color:var(--glow);border-bottom:1px solid rgba(91,163,212,.25);transition:border-color .2s}
+.law-body a:hover{border-color:var(--glow)}
+.law-note{
+  margin-top:24px;padding:20px 24px;
+  background:rgba(196,165,90,.06);border:1px solid rgba(196,165,90,.2);border-radius:12px;
+  font-size:13px;color:var(--muted2);line-height:1.7;
+}
+.law-note strong{color:var(--gold)}
+@media(max-width:768px){.laws-grid{grid-template-columns:1fr}}
+/* Privacy block */
+.privacy-block{background:rgba(10,18,32,.98);border-top:1px solid rgba(255,255,255,.05);padding:28px 32px}
+.privacy-inner{max-width:1280px;margin:0 auto}
+.privacy-text{font-size:12px;color:var(--muted);line-height:1.7;max-width:800px}
+.privacy-strong{color:var(--muted2)}
+/* Delayed fade for hero card column */
+.js-ready .fu-delay{transition-delay:.15s}
+/* Process note (replaces inline style) */
+.proc-note{text-align:center;margin-top:32px;font-size:14px;color:var(--muted)}
+/* TG */
+.tg{
+  position:fixed;bottom:28px;right:28px;z-index:500;
+  width:52px;height:52px;border-radius:50%;
+  background:var(--glow);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 0 20px rgba(91,163,212,.35);
+  transition:transform .25s,box-shadow .25s;
+}
+.tg:hover{transform:scale(1.08);box-shadow:0 0 32px rgba(91,163,212,.5)}
+.tg svg{width:22px;height:22px;fill:var(--navy)}
+/* FADE */
+.js-ready .fu{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.js-ready .fu.in{opacity:1;transform:none}
+
+/* ANIMATED GRADIENT — hero hl */
+.hero-h1 .hl{
+  background:linear-gradient(90deg,var(--glow),#a8d8f0,var(--glow));
+  background-size:200% auto;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:gradFlow 5s ease-in-out infinite;
+}
+@keyframes gradFlow{0%{background-position:0% center}100%{background-position:200% center}}
+
+/* HOVER — карточки поднимаются */
+.exp-card{transition:border-color .3s,background .3s,transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s}
+.exp-card:hover{transform:translateY(-7px);box-shadow:0 24px 60px rgba(0,0,0,.35),0 0 40px rgba(91,163,212,.09)}
+.case-c{transition:border-color .3s,transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s}
+.case-c:hover{transform:translateY(-7px);box-shadow:0 24px 60px rgba(0,0,0,.35),0 0 40px rgba(91,163,212,.12)}
+.proc-step{transition:border-color .3s,background .3s,transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s}
+.proc-step:hover{border-color:var(--line2);transform:translateY(-5px);box-shadow:0 16px 40px rgba(0,0,0,.25);background:rgba(91,163,212,.05)}
+.srv-card{transition:border-color .3s,transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s}
+.srv-card:hover{border-color:var(--line2);transform:translateY(-5px);box-shadow:0 16px 40px rgba(0,0,0,.25)}
+
+/* HOVER — кнопки */
+.btn-primary{transition:transform .25s,box-shadow .3s,opacity .25s}
+.btn-primary:hover{opacity:1;transform:translateY(-2px) scale(1.02);box-shadow:0 10px 36px rgba(91,163,212,.55)}
+.h-cta{transition:opacity .25s,box-shadow .3s,transform .25s}
+.h-cta:hover{opacity:1;transform:translateY(-1px);box-shadow:0 6px 24px rgba(91,163,212,.45)}
+
+/* HEADER scrolled */
+header.on .hx{background:rgba(14,22,40,.96);box-shadow:0 8px 40px rgba(0,0,0,.45);border-color:rgba(91,163,212,.12)}
+.hx{transition:background .4s,box-shadow .4s,border-color .4s}
+
+/* TG button pulse ring */
+.tg::after{
+  content:'';position:absolute;inset:-4px;border-radius:50%;
+  border:1px solid rgba(91,163,212,.4);
+  animation:tgRing 2.5s ease-out infinite;
+}
+@keyframes tgRing{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.5);opacity:0}}
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .hero-inner{grid-template-columns:1fr}
+  .hero-card{max-width:280px;margin:0 auto 40px}
+  .hero-inner{flex-direction:column-reverse}
+  .about-grid{grid-template-columns:1fr}
+  .about-photo{aspect-ratio:16/9;position:static}
+  .exp-wide{grid-template-columns:1fr}
+  .con-grid{grid-template-columns:1fr}
+  .cases-grid{grid-template-columns:1fr 1fr}
+  .proc-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  section{padding:64px 20px}
+  header{padding:0 16px}
+  #hero{padding:130px 20px 60px}
+  footer{padding:28px 20px}
+  .h-nav{display:none}
+  .burger{display:flex}
+  .exp-grid{grid-template-columns:1fr}
+  .exp-wide{grid-column:span 1}
+  .srv-pane.on{grid-template-columns:1fr}
+  .srv-tabs{gap:6px}
+  .srv-tab{font-size:13px;padding:8px 16px;border-radius:20px 20px 0 0}
+  .cases-grid{grid-template-columns:1fr}
+  .proc-grid{grid-template-columns:1fr 1fr}
+  .nums-grid{grid-template-columns:1fr 1fr}
+  .num-item:nth-child(even){border-right:none}
+  .h-cta{display:none}
+  .fx{justify-content:center;text-align:center}
+}
+@media(max-width:480px){
+  .proc-grid{grid-template-columns:1fr}
+  .nums-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- A11Y -->
+<div class="a11y">
+  <button type="button" class="a11y-btn" id="btnBig" onclick="toggleBig()">А+  Крупный текст</button>
+  <button type="button" class="a11y-btn" id="btnC" onclick="toggleContrast()">Высокий контраст</button>
+</div>
+
+<!-- BACK TO TOP -->
+<button type="button" class="btt" id="btt" aria-label="Наверх" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<!-- TG -->
+<a href="https://t.me/ElizavetaAnt" target="_blank" rel="noopener noreferrer" class="tg" aria-label="Написать в Telegram">
+  <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+</a>
+
+<!-- MOBILE MENU -->
+<div class="m-menu" id="mm">
+  <button type="button" class="m-close" onclick="cm()">✕</button>
+  <a href="#expertise" onclick="cm()">Экспертиза</a>
+  <a href="#laws" onclick="cm()">Законодательство</a>
+  <a href="#about" onclick="cm()">О себе</a>
+  <a href="#services" onclick="cm()">Услуги</a>
+  <a href="#cases" onclick="cm()">Кейсы</a>
+  <a href="#contact" onclick="cm()">Контакт</a>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="hx">
+    <div class="h-logo"><img src="logo.png" alt="ЕА · Б.Р" class="logo-img"/>ЕА · Б.Р</div>
+    <nav class="h-nav">
+      <a href="#expertise">Экспертиза</a>
+      <a href="#about">О себе</a>
+      <a href="#services">Услуги</a>
+      <a href="https://eabr-platform.vercel.app">Обучение</a>
+      <a href="#cases">Кейсы</a>
+      <a href="#contact" class="h-cta">Написать</a>
+    </nav>
+    <div class="burger" id="burg"><span></span><span></span><span></span></div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="hero">
+  <canvas id="stars"></canvas>
+  <div class="aurora aurora-1"></div>
+  <div class="aurora aurora-2"></div>
+  <div class="hero-inner">
+    <div class="fu">
+      <div class="hero-badge">Специалист в праве здравоохранения</div>
+      <h1 class="hero-h1">
+        <span class="h1-dim">Право</span>
+        <span class="h1-dim">Репутация</span>
+        <span class="hl">Цифровые решения</span>
+      </h1>
+      <p class="hero-sub">Дипломированный специалист в праве здравоохранения с опытом в РФ и Казахстане. Управляю кризисами, обучаю команды и создаю цифровые продукты для медицины.</p>
+      <div class="hero-chips">
+        <span class="chip med">Право здравоохранения</span>
+        <span class="chip med">Антикризисный PR</span>
+        <span class="chip med">Обучение команд</span>
+        <span class="chip">ИИ-агенты</span>
+        <span class="chip">Сайты и приложения</span>
+      </div>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-primary">Обсудить задачу</a>
+        <a href="#expertise" class="btn-outline">Смотреть экспертизу</a>
+      </div>
+      <p class="hero-note">Работаю онлайн и очно · РФ и Казахстан</p>
+    </div>
+    <div class="fu fu-delay">
+      <div class="hero-card">
+        <div class="card-orbit"><div class="card-dot"></div></div>
+        <div class="card-orbit card-orbit-2"><div class="card-dot"></div></div>
+        <div class="card-orbit card-orbit-3"><div class="card-dot"></div></div>
+        <div class="card-core">
+          <div class="card-icon">⚖️</div>
+          <div class="card-label">ЕА · Б.Р</div>
+          <div class="card-stats">
+            <div class="card-stat"><span class="card-stat-label">Опыт</span><span class="card-stat-val">12+ лет</span></div>
+            <div class="card-stat"><span class="card-stat-label">Рейтинг</span><span class="card-stat-val">5.0 ★</span></div>
+            <div class="card-stat"><span class="card-stat-label">Проекты</span><span class="card-stat-val">30+</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NUMS -->
+<div id="nums">
+  <div class="nums-grid">
+    <div class="num-item fu">
+      <div class="num-top"></div>
+      <div class="num-val" data-to="12" data-suf="">0<span class="num-suf">+</span></div>
+      <div class="num-label">лет в антикризисном PR<br>и праве здравоохранения</div>
+    </div>
+    <div class="num-item fu">
+      <div class="num-top"></div>
+      <div class="num-val" data-to="2" data-suf="">0</div>
+      <div class="num-label">страны практики<br>РФ и Казахстан</div>
+    </div>
+    <div class="num-item fu">
+      <div class="num-top"></div>
+      <div class="num-val" data-to="5" data-suf=".0">0</div>
+      <div class="num-label">средняя оценка клиник<br>после сопровождения</div>
+    </div>
+    <div class="num-item fu">
+      <div class="num-top"></div>
+      <div class="num-val" data-to="30" data-suf="">0<span class="num-suf">+</span></div>
+      <div class="num-label">цифровых продуктов<br>запущено</div>
+    </div>
+  </div>
+</div>
+
+<!-- EXPERTISE -->
+<section id="expertise">
+  <div class="cx">
+    <div class="sec-label">Экспертиза</div>
+    <h2 class="sec-h fu">Знаю медицину изнутри.<br><strong>Строю под неё системы.</strong></h2>
+    <div class="exp-grid">
+      <div class="exp-card fu"><div class="exp-num">01</div><h3>Право в здравоохранении</h3><p>Дипломированный специалист с практическим опытом в медицинских учреждениях РФ и Казахстана. Правовой аудит, оценка рисков, документооборот до того, как проблема возникла.</p><div class="exp-result">Споры решаются до судебных разбирательств</div></div>
+      <div class="exp-card fu"><div class="exp-num">02</div><h3>Антикризисный PR в медицине</h3><p>Более 12 лет управляю кризисными ситуациями и репутацией. Понимаю природу конфликтов в медицинской среде и знаю, как остановить их до публичного скандала.</p><div class="exp-result">Рейтинг клиник вырастает до 5.0</div></div>
+      <div class="exp-card fu"><div class="exp-num">03</div><h3>Обучение медицинских команд</h3><p>Команда после обучения знает свои правовые права и обязанности, сохраняет эффективность в конфликтах и умеет выстраивать коммуникацию с пациентами.</p><div class="exp-result">Количество жалоб снижается системно</div></div>
+      <div class="exp-card fu"><div class="exp-num">04</div><h3>Цифровые продукты для медицины</h3><p>Сайты, приложения и ИИ-агенты, созданные человеком, который понимает медицину изнутри. Не шаблонные решения — продукты под реальные задачи клиник.</p><div class="exp-result">Автоматизация без потери качества</div></div>
+      <div class="exp-card exp-wide fu">
+        <div><div class="exp-num">—</div><h3>Почему это работает вместе</h3><p>Большинство разработчиков не знают медицину. Большинство юристов не создают ИИ-агентов. Я знаю всё это изнутри — и именно поэтому каждое решение работает в реальных условиях клиники.</p></div>
+        <div class="exp-quote">«Я понимаю медицину изнутри. Поэтому правовые стратегии, PR-решения и цифровые продукты создаю под реальные задачи клиник — а не по шаблону»</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LAWS -->
+<section id="laws">
+  <div class="cx">
+    <div class="sec-label">Правовая база</div>
+    <h2 class="sec-h fu">Законодательство, <strong>которое защищает врача и пациента</strong></h2>
+    <p class="laws-intro fu">Медицинский работник, который знает свои права, не боится конфликтов. Здесь — ключевые законы, которые определяют работу в здравоохранении РФ.</p>
+    <div class="laws-grid">
+      <div class="law-item fu">
+        <button type="button" class="law-q" onclick="toggleLaw(this)">
+          <div class="law-q-left"><span class="law-tag">ФЗ-323</span><span class="law-title">Об основах охраны здоровья граждан</span></div>
+          <div class="law-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </button>
+        <div class="law-body">
+          <p>Основной закон, регулирующий всю медицинскую деятельность в РФ. Определяет <strong>права пациентов</strong>, обязанности медицинских организаций, порядок оказания помощи, информированное добровольное согласие.</p>
+          <p><strong>Зачем знать врачу:</strong> защита от претензий пациентов, правильное оформление отказа от лечения, соблюдение врачебной тайны.</p>
+          <p><a href="http://www.consultant.ru/document/cons_doc_LAW_121895/" target="_blank" rel="noopener noreferrer">Читать на Консультанте →</a></p>
+        </div>
+      </div>
+      <div class="law-item fu">
+        <button type="button" class="law-q" onclick="toggleLaw(this)">
+          <div class="law-q-left"><span class="law-tag">ФЗ-326</span><span class="law-title">Об обязательном медицинском страховании</span></div>
+          <div class="law-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </button>
+        <div class="law-body">
+          <p>Регулирует систему ОМС: права застрахованных, обязанности медицинских организаций, порядок оплаты. <strong>Частые конфликты</strong> возникают именно из-за незнания этого закона обеими сторонами.</p>
+          <p><strong>Зачем знать врачу:</strong> что входит в ОМС, как обосновать отказ в бесплатной услуге, документооборот при страховых проверках.</p>
+          <p><a href="http://www.consultant.ru/document/cons_doc_LAW_10699/" target="_blank" rel="noopener noreferrer">Читать на Консультанте →</a></p>
+        </div>
+      </div>
+      <div class="law-item fu">
+        <button type="button" class="law-q" onclick="toggleLaw(this)">
+          <div class="law-q-left"><span class="law-tag">ЗоЗПП</span><span class="law-title">Закон о защите прав потребителей</span></div>
+          <div class="law-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </button>
+        <div class="law-body">
+          <p>Применяется к платным медицинским услугам. Пациент как потребитель вправе требовать качества, информации и возмещения ущерба. <strong>Источник большинства претензий</strong> в частных клиниках.</p>
+          <p><strong>Зачем знать врачу:</strong> как составить договор на платные услуги, что делать при жалобе в Роспотребнадзор, сроки ответа на претензию.</p>
+          <p><a href="http://www.consultant.ru/document/cons_doc_LAW_5142/" target="_blank" rel="noopener noreferrer">Читать на Консультанте →</a></p>
+        </div>
+      </div>
+      <div class="law-item fu">
+        <button type="button" class="law-q" onclick="toggleLaw(this)">
+          <div class="law-q-left"><span class="law-tag">ФЗ-157</span><span class="law-title">Об иммунопрофилактике инфекционных болезней</span></div>
+          <div class="law-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </button>
+        <div class="law-body">
+          <p>Регулирует вакцинацию: добровольность, последствия отказа, национальный календарь прививок. <strong>Острая тема</strong> — конфликты вокруг отказов от прививок участились.</p>
+          <p><strong>Зачем знать врачу:</strong> как правильно оформить отказ пациента, ответственность медорганизации при поствакцинальных осложнениях.</p>
+          <p><a href="http://www.consultant.ru/document/cons_doc_LAW_34661/" target="_blank" rel="noopener noreferrer">Читать на Консультанте →</a></p>
+        </div>
+      </div>
+      <div class="law-item fu">
+        <button type="button" class="law-q" onclick="toggleLaw(this)">
+          <div class="law-q-left"><span class="law-tag">ФЗ-152</span><span class="law-title">О персональных данных</span></div>
+          <div class="law-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </button>
+        <div class="law-body">
+          <p>Медицинские данные — это <strong>специальная категория персональных данных</strong>. Требования к хранению, передаче, согласию на обработку особенно строгие.</p>
+          <p><strong>Зачем знать врачу:</strong> как хранить истории болезней, передавать данные страховым, отвечать на запросы третьих лиц. Нарушения — штрафы до 300 000 руб.</p>
+        </div>
+      </div>
+      <div class="law-item fu">
+        <button type="button" class="law-q" onclick="toggleLaw(this)">
+          <div class="law-q-left"><span class="law-tag">УК РФ</span><span class="law-title">Уголовная ответственность медработника</span></div>
+          <div class="law-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </button>
+        <div class="law-body">
+          <p>Статьи 109, 118, 124, 235 УК РФ. <strong>Врачебная ошибка, неоказание помощи, незаконная медицинская деятельность</strong> — реальные уголовные риски.</p>
+          <p><strong>Зачем знать врачу:</strong> где проходит граница между халатностью и несчастным случаем, как правильно документировать действия, чтобы защититься в суде.</p>
+        </div>
+      </div>
+    </div>
+    <div class="law-note fu">
+      <strong>Нужна помощь с конкретной ситуацией?</strong> Эти законы определяют рамки — но каждый случай индивидуален. Обсудим вашу ситуацию в переписке.
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="cx">
+    <div class="sec-label">О себе</div>
+    <div class="about-grid">
+      <div class="about-photo fu">
+        <img src="photo.jpg" alt="Елизавета Антошина" class="about-img"/>
+      </div>
+      <div>
+        <h2 class="about-h fu">Более 12 лет в антикризисном PR</h2>
+        <div class="about-ps">
+          <p class="about-p fu">Я являюсь <strong>дипломированным специалистом в области права здравоохранения</strong> с практическим опытом работы в медицинских учреждениях России и Казахстана.</p>
+          <p class="about-p fu">Более 12 лет занимаюсь управлением кризисными ситуациями и репутацией. <strong>Отзывы пациентов достигают оценки 5.0</strong>, команда сохраняет эффективность в конфликтных ситуациях, спорные вопросы решаются до этапа судебных разбирательств.</p>
+          <p class="about-p fu">Параллельно создаю цифровые продукты: сайты, приложения и ИИ-агенты. Не как сторонний разработчик, а как <strong>человек, который понимает специфику изнутри</strong>.</p>
+          <p class="about-p fu">Работаю как онлайн, так и очно: лекции, командные аудиты, сопровождение на месте. <strong>Очный формат даёт глубину</strong>, которую не заменит ни один звонок. Каждый проект — индивидуальный подход.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="cx">
+    <div class="sec-label">Услуги</div>
+    <h2 class="sec-h fu">Что конкретно я делаю</h2>
+    <div class="srv-tabs">
+      <button type="button" class="srv-tab on" onclick="st('med',this)">Медицина и право</button>
+      <button type="button" class="srv-tab" onclick="st('dig',this)">Цифровые продукты</button>
+    </div>
+    <div class="srv-body">
+      <div class="srv-pane med on" id="pmed">
+        <div class="srv-card fu"><div class="srv-tag">Кризис</div><h3>Антикризисное сопровождение</h3><ul class="srv-list"><li>Оценка ситуации и стратегия реагирования</li><li>Работа с командой в режиме кризиса</li><li>Коммуникация с пациентом и партнёрами</li><li>Выход без суда и скандала</li></ul><div class="srv-res"><strong>Результат:</strong> конфликт урегулирован, репутация сохранена</div></div>
+        <div class="srv-card fu" id="training"><div class="srv-tag">Обучение</div><h3>Обучение медицинских команд</h3><ul class="srv-list"><li>Правовые основы работы в медицине</li><li>Протоколы в конфликтных ситуациях</li><li>Коммуникация с пациентом</li><li>Разбор реальных кейсов</li></ul><div class="srv-res"><strong>Результат:</strong> команда действует уверенно и по закону</div></div>
+        <div class="srv-card fu"><div class="srv-tag">Аудит</div><h3>Правовой аудит рисков</h3><ul class="srv-list"><li>Анализ документооборота и процессов</li><li>Выявление зон правового риска</li><li>Рекомендации по устранению</li></ul><div class="srv-res"><strong>Результат:</strong> понимание рисков до того, как они сработали</div></div>
+        <div class="srv-card fu"><div class="srv-tag">Лояльность</div><h3>Выстраивание лояльности</h3><ul class="srv-list"><li>Внутренняя коммуникация в клинике</li><li>Работа с внешними партнёрами</li><li>Системный рост рейтинга</li></ul><div class="srv-res"><strong>Результат:</strong> рост оценок, снижение оттока пациентов</div></div>
+      </div>
+      <div class="srv-pane dig" id="pdig">
+        <div class="srv-card fu"><div class="srv-tag">Сайт</div><h3>Сайт для медицины</h3><ul class="srv-list"><li>Дизайн, вёрстка, запуск</li><li>Мобильная версия</li><li>Форма записи пациентов</li><li>SEO-оптимизация</li></ul><div class="srv-res"><strong>Результат:</strong> сайт, который работает на доверие и запись</div></div>
+        <div class="srv-card fu"><div class="srv-tag">ИИ-агент</div><h3>ИИ-агент для клиники</h3><ul class="srv-list"><li>Автоматическая запись на приём</li><li>Ответы на вопросы 24/7</li><li>Интеграция с вашей системой</li></ul><div class="srv-res"><strong>Результат:</strong> 70% запросов без участия администратора</div></div>
+        <div class="srv-card fu"><div class="srv-tag">Приложение</div><h3>Мобильное приложение</h3><ul class="srv-list"><li>Дизайн и разработка iOS/Android</li><li>Логика, понятная врачу и пациенту</li><li>Запуск в App Store и Google Play</li></ul><div class="srv-res"><strong>Результат:</strong> продукт с пониманием медицины</div></div>
+        <div class="srv-card fu"><div class="srv-tag">AI</div><h3>Настройка AI-инструментов</h3><ul class="srv-list"><li>Подбор инструментов под задачу</li><li>Обучение команды</li><li>Автоматизация отчётов и документов</li></ul><div class="srv-res"><strong>Результат:</strong> экономия 2-4 часов в день</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASES -->
+<section id="cases">
+  <div class="cx">
+    <div class="sec-label">Кейсы</div>
+    <h2 class="sec-h fu">Реальные задачи. <strong>Реальные результаты.</strong></h2>
+    <div class="cases-grid">
+      <div class="case-c fu"><div class="case-deep">Глубокое погружение</div><div class="case-type m">Репутация · Рейтинг</div><div class="case-num m">5.0</div><p>Клиника с постоянным потоком жалоб. Рейтинг 3.1. Команда не понимала причин.</p><div class="case-bar">4 месяца сопровождения · рейтинг с 3.1 вырос до 5.0</div></div>
+      <div class="case-c fu"><div class="case-deep">Глубокое погружение</div><div class="case-type m">Кризис · Право</div><div class="case-num m">0</div><p>Конфликт пациента с клиникой. Угроза публичного скандала и судебного разбирательства.</p><div class="case-bar">судебных разбирательств · урегулировано до суда</div></div>
+      <div class="case-c fu"><div class="case-deep">Глубокое погружение</div><div class="case-type m">Команда · Коммуникация</div><div class="case-num m">↓</div><p>Высокая текучка, внутренние конфликты. Персонал не знал своих прав и обязанностей.</p><div class="case-bar">конфликты снижены · команда действует уверенно</div></div>
+      <div class="case-c fu"><div class="case-type d">Сайт · Медицина</div><div class="case-num d">60%</div><p>Медицинский центр без онлайн-присутствия. Устаревший телефонный формат записи.</p><div class="case-bar">записей перешло в онлайн за первый месяц</div></div>
+      <div class="case-c fu"><div class="case-type d">ИИ-агент · Автоматизация</div><div class="case-num d">70%</div><p>Администраторы тратили 3 часа в день на ответы на типовые вопросы пациентов.</p><div class="case-bar">запросов без участия администратора</div></div>
+      <div class="case-c fu"><div class="case-type d">Лендинг · Врач</div><div class="case-num d">3</div><p>Врач работал только по рекомендациям. Хотел стабильный поток новых пациентов.</p><div class="case-bar">недели вперёд заполнена запись после запуска</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="cx">
+    <div class="sec-label">Процесс</div>
+    <h2 class="sec-h fu">Как проходит сотрудничество</h2>
+    <div class="proc-grid">
+      <div class="proc-step fu"><div class="proc-n">01</div><h3>Консультация</h3><p>Обсуждаем задачу, ситуацию, цели. 30-60 минут в Zoom или Telegram. Бесплатно.</p></div>
+      <div class="proc-step fu"><div class="proc-n">02</div><h3>Анализ и план</h3><p>Готовлю конкретное предложение: шаги, сроки, формат, стоимость.</p></div>
+      <div class="proc-step fu"><div class="proc-n">03</div><h3>Реализация</h3><p>Разработка, сопровождение или обучение. Регулярная связь и промежуточные результаты.</p></div>
+      <div class="proc-step fu"><div class="proc-n">04</div><h3>Результат</h3><p>Сдача проекта, обратная связь. Поддержка после — я не исчезаю после закрытия задачи.</p></div>
+    </div>
+    <p class="proc-note fu">Работаю онлайн и очно · РФ и Казахстан</p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="cx">
+    <div class="sec-label">Контакт</div>
+    <div class="con-grid">
+      <div>
+        <h2 class="con-h fu">Напишите — обсудим вашу задачу</h2>
+        <p class="con-p fu">Расскажите, с чем вы столкнулись. Отвечаю в переписке, по возможности.</p>
+        <div class="con-links fu">
+          <a href="https://t.me/ElizavetaAnt" target="_blank" rel="noopener noreferrer">Telegram личный · @ElizavetaAnt</a>
+          <a href="https://t.me/eabrmed" target="_blank" rel="noopener noreferrer">Канал для врачей и пациентов · @eabrmed</a>
+          <a href="mailto:ant.elizaveta.a@gmail.com">Email · ant.elizaveta.a@gmail.com</a>
+          <a href="https://ea-brmed.ru" target="_blank" rel="noopener noreferrer">ea-brmed.ru</a>
+        </div>
+      </div>
+      <div class="fu">
+        <div class="form-wrap">
+          <form id="cf">
+            <div class="fg"><label for="f-name">Ваше имя</label><input id="f-name" name="name" type="text" placeholder="Как вас зовут?" required/></div>
+            <div class="fg"><label for="f-email">Email</label><input id="f-email" name="email" type="email" placeholder="ваш@email.ru" required/></div>
+            <div class="fg"><label for="f-phone">Телефон или Telegram</label><input id="f-phone" name="phone" type="text" placeholder="+7 999 ... или @ник"/></div>
+            <div class="fg"><label for="f-dir">Направление</label>
+              <select id="f-dir" name="direction" aria-label="Направление работы"><option value="">Выберите</option><option>Право и PR в медицине</option><option>Цифровой проект</option><option>Обсудим</option></select>
+            </div>
+            <button type="submit" class="f-btn">Отправить заявку</button>
+            <p class="f-note">Нажимая «Отправить», вы соглашаетесь с <a href="#privacy">обработкой персональных данных</a> в соответствии с ФЗ-152</p>
+          </form>
+          <div class="f-ok" id="fok">
+            <div class="f-ok-check">
+              <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="f-ok-title">Заявка отправлена</div>
+            <div class="f-ok-sub">Спасибо. Я получила ваше сообщение<br>и отвечу в ближайшее время.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRIVACY -->
+<div id="privacy" class="privacy-block">
+  <div class="privacy-inner">
+    <p class="privacy-text">
+      <strong class="privacy-strong">Политика обработки персональных данных.</strong>
+      Настоящий сайт обрабатывает персональные данные пользователей (имя, email, телефон) в целях обратной связи и консультирования. Обработка осуществляется в соответствии с Федеральным законом от 27.07.2006 № 152-ФЗ «О персональных данных». Данные не передаются третьим лицам и хранятся только на период, необходимый для ответа на запрос. Отправляя форму, вы даёте согласие на обработку указанных персональных данных.
+    </p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fx">
+    <div class="f-logo">ЕА · Б.Р</div>
+    <nav class="f-nav">
+      <a href="#expertise">Экспертиза</a>
+      <a href="#about">О себе</a>
+      <a href="#services">Услуги</a>
+      <a href="https://eabr-platform.vercel.app">Обучение</a>
+      <a href="#cases">Кейсы</a>
+      <a href="#contact">Контакт</a>
+    </nav>
+    <div class="f-copy">2026 ЕА · Б.Р</div>
+  </div>
+</footer>
+
+<script>
+// Активируем анимации только если JS работает — иначе всё видно без JS
+document.body.classList.add('js-ready');
+// A11y
+function toggleBig(){
+  var on=document.body.classList.toggle('big-text');
+  document.getElementById('btnBig').classList.toggle('on',on);
+  document.getElementById('btnBig').textContent=on?'А− Обычный текст':'А+  Крупный текст';
+}
+function toggleContrast(){
+  document.body.style.filter=document.body.style.filter?'':'contrast(1.15) brightness(1.05)';
+  document.getElementById('btnC').classList.toggle('on');
+}
+// Mobile
+var burg=document.getElementById('burg');
+if(burg)burg.addEventListener('click',function(){document.getElementById('mm').classList.add('on')});
+function cm(){var mm=document.getElementById('mm');if(mm)mm.classList.remove('on')}
+// Header
+const hdr=document.querySelector('header');
+if(hdr)window.addEventListener('scroll',()=>hdr.classList.toggle('on',scrollY>40));
+// Fade on scroll
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.08});
+document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
+// Counters
+const cob=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;
+  const el=e.target,to=+el.dataset.to,suf=el.dataset.suf||'';
+  const span=el.querySelector('.num-suf');
+  let n=0,step=to/60;
+  const t=setInterval(()=>{n+=step;if(n>=to){n=to;clearInterval(t)}
+    if(span)el.firstChild.textContent=Math.floor(n)+suf;
+    else el.textContent=Math.floor(n)+suf;
+  },16);
+  cob.unobserve(el);
+}),{threshold:.5});
+document.querySelectorAll('[data-to]').forEach(el=>cob.observe(el));
+// Tabs
+function st(id,btn){
+  document.querySelectorAll('.srv-pane').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.srv-tab').forEach(b=>b.classList.remove('on'));
+  document.getElementById('p'+id).classList.add('on');btn.classList.add('on');
+}
+// Form — отправка через Formspree
+var FORMSPREE_ID = 'xnjolebd';
+var cf=document.getElementById('cf');
+if(cf)cf.addEventListener('submit',function(e){
+  e.preventDefault();
+  var btn=cf.querySelector('.f-btn');
+  btn.textContent='Отправляю...';
+  btn.disabled=true;
+  var data=new FormData(cf);
+  fetch('https://formspree.io/f/'+FORMSPREE_ID,{
+    method:'POST',
+    body:data,
+    headers:{Accept:'application/json'}
+  }).then(function(r){
+    if(r.ok){
+      cf.style.opacity='0';cf.style.transform='scale(.96)';cf.style.transition='opacity .3s,transform .3s';
+      setTimeout(function(){cf.style.display='none';document.getElementById('fok').classList.add('show')},300);
+    } else {
+      btn.textContent='Ошибка. Напишите в Telegram';btn.disabled=false;
+    }
+  }).catch(function(){
+    btn.textContent='Ошибка. Напишите в Telegram';btn.disabled=false;
+  });
+});
+// Кнопка «наверх»
+(function(){
+  var btn=document.getElementById('btt');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    btn.classList.toggle('show',window.scrollY>400);
+  },{passive:true});
+})();
+// PARALLAX — aurora и canvas двигаются медленнее при скролле
+(function(){
+  var a1=document.querySelector('.aurora-1');
+  var a2=document.querySelector('.aurora-2');
+  var heroCard=document.querySelector('.hero-card');
+  window.addEventListener('scroll',function(){
+    var y=window.scrollY;
+    if(a1)a1.style.transform='translateY('+y*.18+'px)';
+    if(a2)a2.style.transform='translateY('+y*.12+'px)';
+    if(heroCard)heroCard.style.transform='translateY('+y*.08+'px)';
+  },{passive:true});
+})();
+// Аккордеон законодательства
+function toggleLaw(btn){
+  var item=btn.closest('.law-item');
+  var wasOpen=item.classList.contains('open');
+  document.querySelectorAll('.law-item.open').forEach(function(el){el.classList.remove('open')});
+  if(!wasOpen)item.classList.add('open');
+}
+// STARS canvas
+(function(){
+  const c=document.getElementById('stars');
+  if(!c)return;
+  const ctx=c.getContext('2d');
+  let W,H,stars=[];
+  function resize(){
+    W=c.width=c.offsetWidth;
+    H=c.height=c.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize',resize);
+  for(let i=0;i<180;i++){
+    stars.push({
+      x:Math.random()*W,y:Math.random()*H,
+      r:Math.random()*1.2+.2,
+      o:Math.random()*.6+.1,
+      speed:Math.random()*.3+.05,
+      twinkle:Math.random()*Math.PI*2
+    });
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    const t=Date.now()*.001;
+    stars.forEach(s=>{
+      s.twinkle+=.02;
+      const alpha=s.o*(0.6+0.4*Math.sin(s.twinkle));
+      ctx.beginPath();
+      ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(91,163,212,${alpha})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+</body>
+</html>
