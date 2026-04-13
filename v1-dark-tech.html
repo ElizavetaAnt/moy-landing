@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ВАРИАНТ 1 — Dark Tech</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#03040A;
+  --bg1:#06080F;
+  --bg2:#080C16;
+  --glow:#4FACDE;
+  --glow2:#7B5ECC;
+  --gold:#C4A55A;
+  --white:#F0F2F7;
+  --muted:#5A6678;
+  --muted2:#7A8899;
+  --line:rgba(255,255,255,0.05);
+  --line2:rgba(79,172,222,0.2);
+}
+html{scroll-behavior:smooth;font-size:18px}
+body{
+  background:var(--bg);
+  color:var(--white);
+  font-family:'Inter',sans-serif;
+  font-weight:300;
+  line-height:1.65;
+  overflow-x:hidden;
+  font-size:1rem;
+}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+
+/* ACCESSIBILITY BAR */
+.a11y{
+  position:fixed;top:0;left:0;right:0;
+  background:rgba(3,4,10,.95);
+  border-bottom:1px solid var(--line);
+  z-index:200;
+  display:flex;align-items:center;justify-content:flex-end;
+  padding:6px 40px;gap:12px;
+}
+.a11y-btn{
+  font-family:'DM Mono',monospace;font-size:11px;
+  letter-spacing:.12em;text-transform:uppercase;
+  padding:5px 12px;
+  border:1px solid var(--line2);
+  color:var(--muted2);cursor:pointer;
+  background:none;transition:color .3s,border-color .3s;
+}
+.a11y-btn:hover,.a11y-btn.on{color:var(--glow);border-color:var(--glow)}
+body.big-text{font-size:1.2rem}
+body.high-contrast{
+  --bg:#000;--bg1:#000;--bg2:#111;
+  --white:#FFF;--muted:#AAA;--muted2:#CCC;
+  --line:rgba(255,255,255,0.2);
+}
+
+/* HEADER */
+header{
+  position:fixed;top:32px;left:0;right:0;z-index:100;
+  padding:0 48px;
+}
+.hx{
+  max-width:1400px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(6,8,15,.6);
+  backdrop-filter:blur(20px);
+  border:1px solid var(--line);
+  padding:16px 32px;
+}
+.h-logo{
+  font-family:'Syne',sans-serif;
+  font-weight:700;font-size:1.1rem;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:var(--white);
+}
+.h-nav{display:flex;align-items:center;gap:32px}
+.h-nav a{
+  font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--muted2);transition:color .3s;
+}
+.h-nav a:hover{color:var(--glow)}
+.h-cta{
+  font-family:'DM Mono',monospace;
+  font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;
+  padding:10px 24px;
+  border:1px solid var(--glow);
+  color:var(--glow);
+  transition:background .3s,color .3s;
+}
+.h-cta:hover{background:var(--glow);color:var(--bg)}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.burger span{display:block;width:22px;height:1px;background:var(--white)}
+
+/* HERO */
+#hero{
+  min-height:100vh;
+  display:flex;align-items:center;
+  padding:140px 48px 80px;
+  position:relative;overflow:hidden;
+}
+/* Glow orbs */
+#hero::before{
+  content:'';position:absolute;
+  width:800px;height:800px;border-radius:50%;
+  background:radial-gradient(circle,rgba(79,172,222,.07) 0%,transparent 65%);
+  top:-200px;right:-100px;pointer-events:none;
+}
+#hero::after{
+  content:'';position:absolute;
+  width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(123,94,204,.05) 0%,transparent 65%);
+  bottom:0;left:40%;pointer-events:none;
+}
+/* Grid overlay */
+.grid-overlay{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),
+    linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:100px 100px;
+}
+/* 3D card (CSS only) */
+.hero-3d{
+  position:absolute;right:6%;top:50%;transform:translateY(-50%);
+  width:340px;height:340px;
+  perspective:800px;
+}
+.card-3d{
+  width:100%;height:100%;
+  border:1px solid rgba(79,172,222,.25);
+  background:linear-gradient(135deg,rgba(79,172,222,.06),rgba(123,94,204,.06));
+  backdrop-filter:blur(8px);
+  border-radius:24px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;
+  animation:float 6s ease-in-out infinite;
+  box-shadow:0 0 60px rgba(79,172,222,.1),0 0 120px rgba(79,172,222,.04),inset 0 1px 0 rgba(255,255,255,.08);
+  position:relative;overflow:hidden;
+}
+.card-3d::before{
+  content:'';position:absolute;inset:-1px;
+  background:linear-gradient(135deg,rgba(79,172,222,.3),transparent 50%,rgba(123,94,204,.2));
+  border-radius:24px;opacity:.4;
+}
+.card-inner-icon{
+  font-size:3rem;filter:drop-shadow(0 0 20px rgba(79,172,222,.6));
+  position:relative;z-index:1;
+}
+.card-inner-label{
+  font-family:'DM Mono',monospace;font-size:.65rem;
+  letter-spacing:.25em;text-transform:uppercase;
+  color:var(--glow);opacity:.8;position:relative;z-index:1;
+}
+.card-dots{
+  position:absolute;inset:0;
+  background-image:radial-gradient(rgba(79,172,222,.2) 1px,transparent 1px);
+  background-size:24px 24px;opacity:.4;
+}
+.card-ring{
+  position:absolute;
+  border:1px solid rgba(79,172,222,.15);border-radius:50%;
+  animation:spin 20s linear infinite;
+}
+.ring1{width:260px;height:260px;top:50%;left:50%;transform:translate(-50%,-50%)}
+.ring2{width:200px;height:200px;top:50%;left:50%;transform:translate(-50%,-50%);animation-duration:14s;animation-direction:reverse}
+@keyframes float{0%,100%{transform:translateY(-50%) rotateX(4deg) rotateY(-6deg)}50%{transform:translateY(calc(-50% - 12px)) rotateX(-2deg) rotateY(4deg)}}
+@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+
+.hero-content{position:relative;z-index:1;max-width:620px}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'DM Mono',monospace;font-size:.65rem;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:var(--glow);margin-bottom:28px;
+}
+.hero-tag::before{content:'';display:block;width:20px;height:1px;background:var(--glow)}
+.hero-h1{
+  font-family:'Syne',sans-serif;
+  font-weight:800;
+  font-size:clamp(2.6rem,5.5vw,4.5rem);
+  line-height:1.0;
+  color:var(--white);
+  margin-bottom:28px;
+  letter-spacing:-.02em;
+}
+.hero-h1 .hl{
+  -webkit-text-stroke:1px var(--glow);
+  color:transparent;
+}
+.hero-sub{
+  font-size:1rem;font-weight:300;
+  color:var(--muted2);line-height:1.8;
+  max-width:460px;margin-bottom:44px;
+}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:44px}
+.chip{
+  font-family:'DM Mono',monospace;font-size:.62rem;
+  letter-spacing:.12em;text-transform:uppercase;
+  padding:7px 14px;
+  border:1px solid var(--line);
+  color:var(--muted2);
+  transition:border-color .3s,color .3s;
+}
+.chip.med{border-color:rgba(196,165,90,.3);color:var(--gold)}
+.chip:hover{border-color:var(--glow);color:var(--glow)}
+.hero-acts{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.btn-glow{
+  font-family:'Syne',sans-serif;font-weight:600;
+  font-size:.85rem;letter-spacing:.08em;
+  padding:15px 36px;
+  background:var(--glow);color:var(--bg);
+  transition:box-shadow .3s,opacity .3s;
+  position:relative;overflow:hidden;
+}
+.btn-glow::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);
+  transform:translateX(-100%);transition:transform .5s;
+}
+.btn-glow:hover::after{transform:translateX(100%)}
+.btn-glow:hover{box-shadow:0 0 30px rgba(79,172,222,.4)}
+.btn-line{
+  font-family:'DM Mono',monospace;
+  font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+  padding:15px 32px;
+  border:1px solid rgba(255,255,255,.12);
+  color:var(--muted2);
+  transition:border-color .3s,color .3s;
+}
+.btn-line:hover{border-color:var(--glow);color:var(--glow)}
+.hero-note{font-size:.75rem;color:var(--muted);margin-top:20px;letter-spacing:.04em}
+
+/* NUMBERS */
+#nums{
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  background:var(--bg1);
+}
+.nums-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.num-item{
+  padding:52px 44px;border-right:1px solid var(--line);
+  position:relative;
+}
+.num-item:last-child{border-right:none}
+.num-item::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--glow),transparent);
+  opacity:0;transition:opacity .4s;
+}
+.num-item:hover::before{opacity:1}
+.num-val{
+  font-family:'Syne',sans-serif;font-weight:700;
+  font-size:clamp(2.4rem,4vw,3.8rem);
+  color:var(--white);line-height:1;margin-bottom:10px;
+}
+.num-val .suf{font-size:.5em;color:var(--glow)}
+.num-label{font-size:.8rem;color:var(--muted2);line-height:1.5;font-weight:300}
+
+/* EXPERTISE */
+#expertise{padding:120px 48px;background:var(--bg)}
+.cx{max-width:1400px;margin:0 auto}
+.lbl{
+  font-family:'DM Mono',monospace;font-size:.65rem;
+  letter-spacing:.25em;text-transform:uppercase;
+  color:var(--glow);margin-bottom:20px;
+  display:flex;align-items:center;gap:12px;
+}
+.lbl::before{content:'';display:block;width:20px;height:1px;background:var(--glow)}
+.exp-h{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:clamp(2rem,4vw,3.2rem);
+  color:var(--white);margin-bottom:64px;
+  letter-spacing:-.02em;max-width:700px;
+  line-height:1.1;
+}
+.exp-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:1px;background:var(--line);
+}
+.exp-cell{
+  background:var(--bg);padding:48px;
+  transition:background .3s;
+  position:relative;overflow:hidden;
+}
+.exp-cell::before{
+  content:'';position:absolute;top:0;left:0;width:1px;height:0;
+  background:var(--glow);transition:height .4s;
+}
+.exp-cell:hover{background:var(--bg1)}
+.exp-cell:hover::before{height:100%}
+.exp-n{
+  font-family:'DM Mono',monospace;font-size:.65rem;
+  letter-spacing:.2em;color:var(--muted);margin-bottom:24px;
+}
+.exp-cell h3{
+  font-family:'Syne',sans-serif;font-weight:600;
+  font-size:1.25rem;color:var(--white);margin-bottom:14px;
+}
+.exp-cell p{font-size:.9rem;color:var(--muted2);line-height:1.8;font-weight:300}
+.exp-result{
+  margin-top:20px;padding-top:16px;border-top:1px solid var(--line);
+  font-family:'DM Mono',monospace;font-size:.7rem;
+  letter-spacing:.1em;color:var(--gold);
+}
+.exp-cell.wide{
+  grid-column:span 2;background:var(--bg1);
+  display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;
+}
+.exp-cell.wide p{font-size:.95rem}
+.exp-quote{
+  font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:300;
+  color:var(--muted2);line-height:1.55;
+  border-left:2px solid var(--glow);padding-left:28px;
+}
+
+/* SERVICES */
+#services{padding:120px 48px;background:var(--bg1)}
+.srv-tabs{display:flex;gap:2px;margin:40px 0 0;background:var(--line)}
+.srv-tab{
+  font-family:'DM Mono',monospace;font-size:.68rem;
+  letter-spacing:.15em;text-transform:uppercase;
+  padding:14px 28px;color:var(--muted);cursor:pointer;
+  background:var(--bg1);border:none;
+  transition:color .3s,background .3s;
+}
+.srv-tab.on{color:var(--white);background:var(--bg2)}
+.srv-pane{display:none;margin-top:1px;background:var(--line)}
+.srv-pane.on{display:grid;grid-template-columns:repeat(2,1fr);gap:1px}
+.srv-card{background:var(--bg1);padding:44px}
+.srv-tag{
+  font-family:'DM Mono',monospace;font-size:.6rem;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:18px;
+}
+.srv-pane.dig .srv-tag{color:var(--glow)}
+.srv-card h3{
+  font-family:'Syne',sans-serif;font-weight:600;
+  font-size:1.1rem;color:var(--white);margin-bottom:18px;
+}
+.srv-list li{
+  font-size:.85rem;color:var(--muted2);
+  padding:8px 0;border-bottom:1px solid var(--line);
+  font-weight:300;
+}
+.srv-list li:last-child{border-bottom:none}
+.srv-res{margin-top:20px;font-size:.8rem;color:var(--muted);line-height:1.6}
+.srv-res strong{color:var(--glow)}
+
+/* CASES */
+#cases{padding:120px 48px}
+.cases-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--line);margin-top:56px;
+}
+.case-c{
+  background:var(--bg);padding:44px;
+  position:relative;overflow:hidden;
+  transition:background .3s;
+}
+.case-c:hover{background:var(--bg1)}
+.case-type{
+  font-family:'DM Mono',monospace;font-size:.62rem;
+  letter-spacing:.2em;text-transform:uppercase;margin-bottom:20px;
+}
+.case-type.m{color:var(--gold)}
+.case-type.d{color:var(--glow)}
+.case-num{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:clamp(2.5rem,5vw,4rem);
+  line-height:1;margin-bottom:12px;
+}
+.case-num.m{color:var(--gold)}
+.case-num.d{color:var(--glow)}
+.case-c p{font-size:.85rem;color:var(--muted2);line-height:1.7;font-weight:300}
+.case-bar{
+  margin-top:24px;padding-top:18px;border-top:1px solid var(--line);
+  font-size:.78rem;color:var(--muted);
+}
+.case-deep{
+  display:inline-block;font-family:'DM Mono',monospace;font-size:.6rem;
+  letter-spacing:.15em;text-transform:uppercase;
+  color:rgba(196,165,90,.7);border:1px solid rgba(196,165,90,.2);
+  padding:3px 8px;margin-bottom:14px;
+}
+
+/* CONTACT */
+#contact{padding:120px 48px;background:var(--bg1)}
+.con-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.con-h{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:clamp(2rem,4vw,3.2rem);letter-spacing:-.02em;
+  color:var(--white);line-height:1.1;margin-bottom:24px;
+}
+.con-p{font-size:.95rem;color:var(--muted2);line-height:1.8;font-weight:300;margin-bottom:40px}
+.con-links{display:flex;flex-direction:column;gap:0}
+.con-links a{
+  font-size:.85rem;color:var(--muted2);
+  padding:16px 0;border-bottom:1px solid var(--line);
+  transition:color .3s;letter-spacing:.04em;
+}
+.con-links a:hover{color:var(--glow)}
+.form-f{display:flex;flex-direction:column;gap:0}
+.fg{
+  display:flex;flex-direction:column;gap:8px;
+  border-bottom:1px solid var(--line);padding:18px 0;
+}
+.fg:first-child{border-top:1px solid var(--line)}
+.fg label{
+  font-family:'DM Mono',monospace;font-size:.6rem;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--muted);
+}
+.fg input,.fg select{
+  background:none;border:none;outline:none;
+  font-family:'Inter',sans-serif;font-size:1rem;font-weight:300;
+  color:var(--white);padding:4px 0;width:100%;
+}
+.fg input::placeholder{color:var(--muted)}
+.fg select{color:var(--white);cursor:pointer}
+.fg select option{background:var(--bg1)}
+.f-btn{
+  margin-top:28px;
+  font-family:'Syne',sans-serif;font-weight:600;
+  font-size:.85rem;letter-spacing:.08em;
+  padding:16px 40px;
+  background:var(--glow);color:var(--bg);
+  border:none;cursor:pointer;align-self:flex-start;
+  transition:box-shadow .3s;
+}
+.f-btn:hover{box-shadow:0 0 30px rgba(79,172,222,.35)}
+.f-note{font-size:.72rem;color:var(--muted);margin-top:14px}
+.f-note a{color:var(--muted);border-bottom:1px solid var(--line)}
+.f-ok{
+  display:none;padding:40px 0;
+  font-family:'Syne',sans-serif;font-size:1.4rem;
+  color:var(--glow);
+}
+
+/* FOOTER */
+footer{border-top:1px solid var(--line);padding:48px}
+.fx{
+  max-width:1400px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.f-logo{
+  font-family:'Syne',sans-serif;font-weight:700;
+  font-size:.95rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted2);
+}
+.f-nav{display:flex;gap:24px}
+.f-nav a{
+  font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);transition:color .3s;
+}
+.f-nav a:hover{color:var(--glow)}
+.f-copy{font-size:.7rem;color:var(--muted);letter-spacing:.05em}
+
+/* TG FLOAT */
+.tg{
+  position:fixed;bottom:32px;right:32px;
+  width:52px;height:52px;border-radius:50%;
+  border:1px solid rgba(79,172,222,.3);
+  background:rgba(6,8,15,.8);backdrop-filter:blur(12px);
+  display:flex;align-items:center;justify-content:center;
+  z-index:500;transition:border-color .3s,box-shadow .3s;
+}
+.tg:hover{border-color:var(--glow);box-shadow:0 0 20px rgba(79,172,222,.25)}
+.tg svg{width:20px;height:20px;fill:var(--muted2)}
+.tg:hover svg{fill:var(--glow)}
+
+/* MOBILE */
+.m-menu{
+  display:none;position:fixed;inset:0;
+  background:rgba(3,4,10,.97);backdrop-filter:blur(20px);
+  z-index:300;flex-direction:column;align-items:center;justify-content:center;gap:36px;
+}
+.m-menu.on{display:flex}
+.m-menu a{
+  font-family:'Syne',sans-serif;font-weight:700;
+  font-size:2rem;letter-spacing:.06em;color:var(--white);
+}
+.m-close{position:absolute;top:24px;right:32px;font-size:24px;color:var(--muted2);cursor:pointer;background:none;border:none}
+
+/* FADE */
+.fu{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s}
+.fu.in{opacity:1;transform:none}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  header{padding:0 24px}
+  #hero{padding:140px 24px 80px}
+  #expertise,#services,#cases,#contact,footer{padding-left:24px;padding-right:24px}
+  .hero-3d{display:none}
+  .exp-cell.wide{grid-template-columns:1fr}
+  .con-grid{grid-template-columns:1fr;gap:56px}
+}
+@media(max-width:768px){
+  .h-nav{display:none}
+  .burger{display:flex}
+  .exp-grid{grid-template-columns:1fr}
+  .exp-cell.wide{grid-column:span 1}
+  .srv-pane.on{grid-template-columns:1fr}
+  .cases-grid{grid-template-columns:1fr}
+  .nums-grid{grid-template-columns:1fr 1fr}
+  .num-item:nth-child(2){border-right:none}
+  .fx{flex-direction:column;gap:20px;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- A11Y BAR -->
+<div class="a11y">
+  <button class="a11y-btn" id="btnBig" onclick="toggleBig()">А+  Крупнее текст</button>
+  <button class="a11y-btn" id="btnContrast" onclick="toggleContrast()">Высокий контраст</button>
+</div>
+
+<!-- TG -->
+<a href="https://t.me/ВАШ_НИК" target="_blank" class="tg">
+  <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+</a>
+
+<!-- MOBILE -->
+<div class="m-menu" id="mm"><button class="m-close" onclick="cm()">✕</button>
+  <a href="#expertise" onclick="cm()">Экспертиза</a>
+  <a href="#services" onclick="cm()">Услуги</a>
+  <a href="#cases" onclick="cm()">Кейсы</a>
+  <a href="#contact" onclick="cm()">Контакт</a>
+</div>
+
+<!-- HEADER -->
+<header id="hdr" style="margin-top:32px">
+  <div class="hx">
+    <div class="h-logo">ЕА · Б.Р</div>
+    <nav class="h-nav">
+      <a href="#expertise">Экспертиза</a>
+      <a href="#about">О себе</a>
+      <a href="#services">Услуги</a>
+      <a href="#cases">Кейсы</a>
+      <a href="#contact" class="h-cta">Написать</a>
+    </nav>
+    <div class="burger" id="burg" onclick="document.getElementById('mm').classList.add('on')"><span></span><span></span><span></span></div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="grid-overlay"></div>
+  <div class="hero-3d">
+    <div class="card-3d">
+      <div class="card-dots"></div>
+      <div class="card-ring ring1"></div>
+      <div class="card-ring ring2"></div>
+      <div class="card-inner-icon">⚖️</div>
+      <div class="card-inner-label">Право · Медицина · AI</div>
+    </div>
+  </div>
+  <div class="hero-content fu">
+    <div class="hero-tag">Специалист в праве здравоохранения</div>
+    <h1 class="hero-h1">
+      Право.<br>Репутация.<br><span class="hl">Цифра.</span>
+    </h1>
+    <p class="hero-sub">
+      Дипломированный специалист в праве здравоохранения с опытом в РФ и Казахстане. Управляю кризисами, обучаю команды и создаю цифровые продукты для медицины.
+    </p>
+    <div class="hero-chips">
+      <span class="chip med">Право здравоохранения</span>
+      <span class="chip med">Антикризисный PR</span>
+      <span class="chip med">Обучение команд</span>
+      <span class="chip">ИИ-агенты</span>
+      <span class="chip">Сайты</span>
+    </div>
+    <div class="hero-acts">
+      <a href="#contact" class="btn-glow">Обсудить задачу</a>
+      <a href="#expertise" class="btn-line">Смотреть экспертизу</a>
+    </div>
+    <p class="hero-note">Первая консультация бесплатно · Ответ в течение 2 часов</p>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<div id="nums">
+  <div class="cx">
+    <div class="nums-grid">
+      <div class="num-item fu">
+        <div class="num-val" data-to="12" data-suf="+">0<span class="suf">+</span></div>
+        <div class="num-label">лет в антикризисном PR<br>и праве здравоохранения</div>
+      </div>
+      <div class="num-item fu">
+        <div class="num-val" data-to="2" data-suf="">0</div>
+        <div class="num-label">страны практики<br>РФ и Казахстан</div>
+      </div>
+      <div class="num-item fu">
+        <div class="num-val" data-to="5" data-suf=".0">0<span class="suf">.0</span></div>
+        <div class="num-label">средняя оценка клиник<br>после сопровождения</div>
+      </div>
+      <div class="num-item fu">
+        <div class="num-val" data-to="30" data-suf="+">0<span class="suf">+</span></div>
+        <div class="num-label">цифровых продуктов<br>запущено</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EXPERTISE -->
+<section id="expertise">
+  <div class="cx">
+    <div class="lbl">Экспертиза</div>
+    <h2 class="exp-h fu">Знаю медицину изнутри.<br>Строю под неё системы.</h2>
+    <div class="exp-grid">
+      <div class="exp-cell fu"><div class="exp-n">01</div><h3>Право в здравоохранении</h3><p>Дипломированный специалист с практическим опытом в медицинских учреждениях РФ и Казахстана. Правовой аудит, оценка рисков, документооборот до того, как проблема возникла.</p><div class="exp-result">Споры решаются до судебных разбирательств</div></div>
+      <div class="exp-cell fu"><div class="exp-n">02</div><h3>Антикризисный PR в медицине</h3><p>Более 12 лет управляю кризисными ситуациями и репутацией. Понимаю природу конфликтов в медицинской среде и знаю, как остановить их до публичного скандала.</p><div class="exp-result">Рейтинг клиник вырастает до 5.0</div></div>
+      <div class="exp-cell fu"><div class="exp-n">03</div><h3>Обучение медицинских команд</h3><p>Команда, прошедшая обучение, знает свои правовые права и обязанности, сохраняет эффективность в конфликтах и умеет выстраивать коммуникацию с пациентами.</p><div class="exp-result">Количество жалоб снижается системно</div></div>
+      <div class="exp-cell fu"><div class="exp-n">04</div><h3>Цифровые продукты для медицины</h3><p>Сайты, приложения и ИИ-агенты, созданные человеком, который понимает медицину изнутри. Не шаблонные решения — продукты под реальные задачи клиник.</p><div class="exp-result">Автоматизация без потери качества</div></div>
+      <div class="exp-cell wide fu">
+        <div><div class="exp-n">/ Принцип</div><h3>Почему это работает вместе</h3><p>Большинство разработчиков не знают медицину. Большинство юристов не создают ИИ-агентов. Я знаю всё это изнутри — и именно поэтому каждое решение работает в реальных условиях клиники.</p></div>
+        <div class="exp-quote">«Я понимаю медицину изнутри. Поэтому правовые стратегии, PR-решения и цифровые продукты создаю под реальные задачи клиник — а не по шаблону»</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="cx">
+    <div class="lbl">Услуги</div>
+    <div class="srv-tabs">
+      <button class="srv-tab on" onclick="st('med',this)">Медицина и право</button>
+      <button class="srv-tab" onclick="st('dig',this)">Цифровые продукты</button>
+    </div>
+    <div class="srv-pane med on" id="pmed">
+      <div class="srv-card fu"><div class="srv-tag">Кризис</div><h3>Антикризисное сопровождение</h3><ul class="srv-list"><li>Оценка ситуации и стратегия реагирования</li><li>Работа с командой в режиме кризиса</li><li>Коммуникация с пациентом и партнёрами</li><li>Выход без суда и скандала</li></ul><div class="srv-res"><strong>Результат:</strong> конфликт урегулирован, репутация сохранена</div></div>
+      <div class="srv-card fu"><div class="srv-tag">Обучение</div><h3>Обучение медицинских команд</h3><ul class="srv-list"><li>Правовые основы работы в медицине</li><li>Протоколы в конфликтных ситуациях</li><li>Коммуникация с пациентом</li><li>Разбор реальных кейсов</li></ul><div class="srv-res"><strong>Результат:</strong> команда действует уверенно и по закону</div></div>
+      <div class="srv-card fu"><div class="srv-tag">Аудит</div><h3>Правовой аудит рисков</h3><ul class="srv-list"><li>Анализ документооборота</li><li>Выявление зон правового риска</li><li>Рекомендации по устранению</li></ul><div class="srv-res"><strong>Результат:</strong> понимание рисков до того, как они сработали</div></div>
+      <div class="srv-card fu"><div class="srv-tag">Лояльность</div><h3>Выстраивание лояльности</h3><ul class="srv-list"><li>Внутренняя коммуникация в клинике</li><li>Работа с внешними партнёрами</li><li>Системный рост рейтинга</li></ul><div class="srv-res"><strong>Результат:</strong> рост оценок, снижение оттока</div></div>
+    </div>
+    <div class="srv-pane dig" id="pdig">
+      <div class="srv-card fu"><div class="srv-tag">Сайт</div><h3>Сайт для медицины</h3><ul class="srv-list"><li>Дизайн, вёрстка, запуск</li><li>Мобильная версия</li><li>Форма записи пациентов</li><li>SEO-оптимизация</li></ul><div class="srv-res"><strong>Результат:</strong> сайт, работающий на доверие и запись</div></div>
+      <div class="srv-card fu"><div class="srv-tag">ИИ-агент</div><h3>ИИ-агент для клиники</h3><ul class="srv-list"><li>Автоматическая запись на приём</li><li>Ответы на вопросы 24/7</li><li>Интеграция с вашей системой</li></ul><div class="srv-res"><strong>Результат:</strong> 70% запросов без участия администратора</div></div>
+      <div class="srv-card fu"><div class="srv-tag">Приложение</div><h3>Мобильное приложение</h3><ul class="srv-list"><li>Дизайн и разработка iOS/Android</li><li>Логика, понятная врачу и пациенту</li><li>Запуск в App Store и Google Play</li></ul><div class="srv-res"><strong>Результат:</strong> продукт с пониманием медицины</div></div>
+      <div class="srv-card fu"><div class="srv-tag">AI</div><h3>Настройка AI-инструментов</h3><ul class="srv-list"><li>Подбор инструментов под задачу</li><li>Обучение команды</li><li>Автоматизация отчётов</li></ul><div class="srv-res"><strong>Результат:</strong> экономия 2-4 часов в день</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CASES -->
+<section id="cases">
+  <div class="cx">
+    <div class="lbl">Кейсы</div>
+    <div class="cases-grid">
+      <div class="case-c fu"><div class="case-deep">Глубокое погружение</div><div class="case-type m">Репутация · Рейтинг</div><div class="case-num m">5.0</div><p>Клиника с постоянным потоком жалоб. Рейтинг 3.1. Команда не понимает причин.</p><div class="case-bar">4 месяца сопровождения · рейтинг 3.1 вырос до 5.0</div></div>
+      <div class="case-c fu"><div class="case-deep">Глубокое погружение</div><div class="case-type m">Кризис · Право</div><div class="case-num m">0</div><p>Конфликт пациента с клиникой. Угроза публичного скандала и судебного разбирательства.</p><div class="case-bar">судебных разбирательств · урегулировано до суда</div></div>
+      <div class="case-c fu"><div class="case-deep">Глубокое погружение</div><div class="case-type m">Команда · Коммуникация</div><div class="case-num m">↓</div><p>Высокая текучка, внутренние конфликты. Персонал не знал своих прав и обязанностей.</p><div class="case-bar">конфликты снижены · команда действует уверенно</div></div>
+      <div class="case-c fu"><div class="case-type d">Сайт · Медицина</div><div class="case-num d">60%</div><p>Медицинский центр без онлайн-присутствия. Устаревший телефонный формат записи.</p><div class="case-bar">записей перешло в онлайн за первый месяц</div></div>
+      <div class="case-c fu"><div class="case-type d">ИИ-агент · Автоматизация</div><div class="case-num d">70%</div><p>Администраторы тратили 3 часа в день на ответы на типовые вопросы пациентов.</p><div class="case-bar">запросов без участия администратора</div></div>
+      <div class="case-c fu"><div class="case-type d">Лендинг · Врач</div><div class="case-num d">3</div><p>Врач работал только по рекомендациям. Хотел стабильный поток новых пациентов.</p><div class="case-bar">недели вперёд заполнена запись после запуска</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="cx">
+    <div class="lbl">Контакт</div>
+    <div class="con-grid">
+      <div>
+        <h2 class="con-h fu">Давайте обсудим вашу задачу</h2>
+        <p class="con-p fu">Расскажите, с чем вы столкнулись. Предложу решение на первой консультации. Бесплатно.</p>
+        <div class="con-links fu">
+          <a href="https://t.me/ВАШ_НИК" target="_blank">Telegram · @ВАШ_НИК</a>
+          <a href="mailto:ВАШ@EMAIL.RU">Email · ВАШ@EMAIL.RU</a>
+        </div>
+      </div>
+      <div class="fu">
+        <form class="form-f" id="cf">
+          <div class="fg"><label>Ваше имя</label><input type="text" placeholder="Как вас зовут?" required/></div>
+          <div class="fg"><label>Телефон или Telegram</label><input type="text" placeholder="+7 999 ... или @ник" required/></div>
+          <div class="fg"><label>Направление</label><select><option value="">Выберите</option><option>Право и PR в медицине</option><option>Цифровой проект</option><option>Обсудим</option></select></div>
+          <button type="submit" class="f-btn">Отправить заявку</button>
+          <p class="f-note">Ответ в течение 2 часов · <a href="#">Политика конфиденциальности</a></p>
+        </form>
+        <div class="f-ok" id="fok">Спасибо. Отвечу в течение 2 часов.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fx">
+    <div class="f-logo">ЕА · Б.Р</div>
+    <nav class="f-nav">
+      <a href="#expertise">Экспертиза</a>
+      <a href="#services">Услуги</a>
+      <a href="#cases">Кейсы</a>
+      <a href="#contact">Контакт</a>
+    </nav>
+    <div class="f-copy">2026 ЕА · Б.Р</div>
+  </div>
+</footer>
+
+<script>
+// A11y
+function toggleBig(){
+  document.body.classList.toggle('big-text');
+  document.getElementById('btnBig').classList.toggle('on');
+}
+function toggleContrast(){
+  document.body.classList.toggle('high-contrast');
+  document.getElementById('btnContrast').classList.toggle('on');
+}
+// Header
+window.addEventListener('scroll',()=>document.getElementById('hdr').style.opacity=scrollY>20?'1':'1');
+// Mobile
+function cm(){document.getElementById('mm').classList.remove('on')}
+// Fade
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.1});
+document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
+// Counters
+const cob=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;
+  const el=e.target,to=+el.dataset.to,suf=el.dataset.suf||'';
+  // keep suffix span
+  const span=el.querySelector('.suf');
+  let n=0,step=to/60;
+  const t=setInterval(()=>{n+=step;if(n>=to){n=to;clearInterval(t)}
+    el.firstChild.textContent=Math.floor(n);
+  },16);
+  cob.unobserve(el);
+}),{threshold:.5});
+document.querySelectorAll('[data-to]').forEach(el=>cob.observe(el));
+// Tabs
+function st(id,btn){
+  document.querySelectorAll('.srv-pane').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.srv-tab').forEach(b=>b.classList.remove('on'));
+  document.getElementById('p'+id).classList.add('on');btn.classList.add('on');
+}
+// Form
+document.getElementById('cf').addEventListener('submit',function(e){
+  e.preventDefault();
+  this.style.display='none';
+  document.getElementById('fok').style.display='block';
+});
+</script>
+</body>
+</html>
